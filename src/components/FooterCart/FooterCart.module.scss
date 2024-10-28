@@ -1,0 +1,23 @@
+.btnWhatsapp {
+    position: fixed;
+    bottom: 0px;
+    justify-content: center;
+  
+    .paneluser {
+      display: flex;
+      background-color: #eef0f4;
+      align-items: center;
+      width: 100vw;
+      justify-content: space-between;
+      padding-left: 1rem;
+      padding-right: 1rem;
+  
+      -webkit-box-shadow: -1px 1px 15px 7px rgba(134, 134, 134, 0.53);
+      -moz-box-shadow: -1px 1px 15px 7px rgba(133, 133, 133, 0.53);
+      box-shadow: -1px 1px 15px 7px rgba(134, 134, 134, 0.53);
+  
+     
+    }  
+  
+  }
+  

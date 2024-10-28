@@ -1,0 +1,10 @@
+.topBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 5;
+  background-color: rgb(255, 255, 255);
+  img {
+    max-width: 390px;
+  }
+}

@@ -1,0 +1,20 @@
+.listProduct {
+ width: 100%;
+ padding: 0.5rem;
+
+  h4 {
+    background-color: #f91477;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    text-transform: capitalize;
+    color: white; 
+    padding: 0.3rem;
+  }
+
+  .product {  
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+
+  }
+}

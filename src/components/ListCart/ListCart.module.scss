@@ -1,0 +1,63 @@
+.list {
+  h4 {
+    border-radius: 0.3rem;
+    background-color: #fd384f;
+    margin: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+
+  .card {
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    margin: 0.5rem;
+
+    .detalle {
+      width: 100%;
+      .btnDelete {
+        cursor: pointer;
+        background-color: rgb(255, 255, 255);
+      }
+
+      .name {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-weight: 900;
+      }
+      .price {
+        font-size: 1em;
+        color: #fd384f;
+        font-weight: 600;
+      }
+    }
+    .btn {
+      display: flex;
+      justify-content: space-between;
+      span {
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+    }
+
+    img {
+      max-width: 5rem;
+      max-height: 5rem;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 0.5rem;
+      aspect-ratio: 1/1;
+      margin-right: 1rem;
+    }
+  }
+}
