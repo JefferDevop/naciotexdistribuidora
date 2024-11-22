@@ -52,7 +52,7 @@ export function Footer() {
         <p className={styles.copyright}>
         NACIOTEX DISTRIBUIDORA Copyright © 2024. Todos los derechos
           reservados <br />
-          Desarrollado por: Jeffer Quiñones <br />
+          Desarrollado por: SUPRAINNOVATIONS <br />
           Cel: 300 530 9990
           Versión 6.0.2
         </p>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useCart } from "@/hooks/useCart";
 import { Products } from "@/api/products";
 import { Footer, FooterCart, ListCart, NotFound, Redes } from "@/components";
@@ -9,7 +9,7 @@ import { BASE_NAME } from "@/config/constants";
 const productCtrl = new Products();
 
 export default function CartPage() {
-  const { cart } = useCart("");
+  const { cart } = useCart();
   const [product, setProduct] = useState("");
   const [load, setLoad] = useState(true);
   const hasProduct = size(product) > 0;
@@ -18,21 +18,31 @@ export default function CartPage() {
 
   const identificadorUnico = generarIdentificadorUnico();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = [];
-        for await (const item of cart) {
+  const fetchProducts = useCallback(async () => {
+    if (cart.length === 0) {
+      setProduct([]);
+      setLoad(false);
+      return;
+    }
+  
+    try {
+      const data = await Promise.all(
+        cart.map(async (item) => {
           const response = await productCtrl.getProductById(item.id);
-          data.push({ ...response, quantity: item.quantity });
-        }
-        setProduct(data);
-        setLoad(false);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+          return { ...response, quantity: item.quantity };
+        })
+      );
+      setProduct(data);
+    } catch (error) {
+      console.error(`Error al cargar productos: ${error}`);
+    } finally {
+      setLoad(false);
+    }
   }, [cart]);
+  
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
 
 
