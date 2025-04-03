@@ -18,8 +18,10 @@ export default function CartPage() {
 
   const identificadorUnico = generarIdentificadorUnico();
 
+
+
   const fetchProducts = useCallback(async () => {
-    if (cart.length === 0) {
+    if (cart?.length === 0) {
       setProduct([]);
       setLoad(false);
       return;
@@ -39,6 +41,7 @@ export default function CartPage() {
       setLoad(false);
     }
   }, [cart]);
+
   
   useEffect(() => {
     fetchProducts();
@@ -51,35 +54,29 @@ export default function CartPage() {
   useEffect(() => {
     (async () => {
       try {
-        const newObjectArray = [];
- 
-        for (const record of product) {
-          const newRecord = {};
-
-          for (const key in record) {
-            if (
-              Object.hasOwnProperty.call(record, key) &&
-              ["name_extend", "quantity", "images", "ref"].includes(key)
-            ) {
-              newRecord[key] = record[key];
-            }
-          }
-
-          newObjectArray.push({         
-           Producto: newRecord.name_extend,
-            Referencia: newRecord.ref,
-            Cantidad: newRecord.quantity,
-            Imagen: BASE_NAME + newRecord.images,          
-          },);
-        }
-        const newArrayAsString = JSON.stringify(newObjectArray, null, 2);   
-
-        setNewProduct( `Pedido No.  ${identificadorUnico} ${newArrayAsString}`);
+        // Filtrar productos activos y no agotados
+        const productosFiltrados = product.filter(
+          (item) => item.active && !item.soldout
+        );
+  
+        const newObjectArray = productosFiltrados.map((record) => ({
+          codigo: record.codigo,
+          Nombre: record.name_extend,
+          Referencia: record.ref,
+          Cantidad: record.quantity,
+          Precio: record.price1,
+          Imagen: BASE_NAME + record.images,
+        }));
+  
+        const newArrayAsString = JSON.stringify(newObjectArray, null, 2);
+  
+        setNewProduct(`Pedido No. ${identificadorUnico} ${newArrayAsString}`);
       } catch (error) {
         console.error(error);
       }
     })();
   }, [product]);
+  
 
   return (
     <>

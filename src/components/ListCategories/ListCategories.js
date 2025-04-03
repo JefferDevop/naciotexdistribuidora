@@ -19,7 +19,7 @@ export function ListCategories(props) {
         {map(categories, (category) => (
           <div key={category.id} className={styles.card}>
             {category.image ? (
-              <Link href={`/products/${category.slug}`}>
+              <Link href={`/products/${category.slug}`} prefetch>
                 <CardImg
                   alt="Card image cap"
                  src={BASE_NAME + upload +

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useCart } from "@/hooks/useCart";
+import { Orders } from "@/api/orders";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
 import {
   Button,
@@ -16,8 +17,15 @@ import { BiArrowBack } from "react-icons/bi";
 import { BsWhatsapp } from "react-icons/bs";
 
 import styles from "./FooterCart.module.scss";
+import { toast } from "react-toastify";
+
+
+const ordersCtrl = new Orders();
+import { size } from "lodash";
+
 
 export function FooterCart(props) {
+
   const { product } = props;
   const { deleteAllCart } = useCart();
   const { items, selectedItem, seller, handleItemClick } = useWhatsApp();
@@ -49,8 +57,38 @@ export function FooterCart(props) {
   };
 
   const addData = () => {
-    const whatsappLink = generateWhatsAppLink(selectedItem, product);
-    window.location.href = whatsappLink;
+    if (selectedItem === null) {
+      toast.error("Seleccione una Linea de Whatsapp", {
+        autoClose: 2000,
+      });
+      return;
+    }
+
+    ordersCtrl.createOrder(product).then((response) => {
+
+
+      if (response) {
+        const whatsappLink = generateWhatsAppLink(selectedItem, product);
+        window.location.href = whatsappLink; 
+      } else {
+        toast.error("Error al enviar el pedido", {
+          autoClose: 2000,
+        });
+      }
+    });
+
+    // ---------------------------------------------------
+    
+    
+    toggleModal();
+  };
+
+  const handleWhatsAppClick = () => {
+    if (items.length === 0) {
+      toast.error("No hay productos seleccionados para enviar.");
+      return;
+    }
+
     toggleModal();
   };
 
@@ -62,7 +100,7 @@ export function FooterCart(props) {
         <Button
           className={styles.whatsapp}
           color="succefull"
-          onClick={() => toggleModal()}
+          onClick={() => handleWhatsAppClick()}
         >
           <BsWhatsapp size={30} color="green" />
           <p>Enviar Listado</p>
