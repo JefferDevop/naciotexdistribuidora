@@ -92,6 +92,12 @@ export function ListCart(props) {
                 <p className={styles.name}>{item.name_extend}</p>
 
                 <h3>AGOTADO</h3>
+                <Button
+                      onClick={() => deleteCart(item.codigo)}
+                      className={styles.btnDelete}
+                    >
+                      <BsTrash3 size="15" color="red" />
+                    </Button>
               </div>
             )}
           </div>
