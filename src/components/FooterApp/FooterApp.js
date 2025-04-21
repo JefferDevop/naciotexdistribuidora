@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useCart } from "@/hooks/useCart";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
+import { BASE_API } from "@/config/constants";
 
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { CiUser } from "react-icons/ci";
 import { BsWhatsapp } from "react-icons/bs";
+
+
 
 import styles from "./FooterApp.module.scss";
 
@@ -20,6 +23,8 @@ import {
 } from "reactstrap";
 
 export function FooterApp() {
+
+  
   const { total } = useCart();
   const { generateWhatsAppLink, items, seller, selectedItem, handleItemClick } =
     useWhatsApp();
@@ -70,7 +75,7 @@ export function FooterApp() {
 
         <BtnLink
           link={
-            "https://naciotexdistribuidora.catalogointeractivo.com.co/admin-dashboard/"
+            "https://naciotexdistribuidora.conexion.bar/admin-dashboard/"
           }
           title={"ADMI"}
           logo={<CiUser size={20} />}
