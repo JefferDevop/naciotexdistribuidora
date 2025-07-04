@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Redes.module.scss";
-import { CardImg } from "reactstrap";
+// import { CardImg } from "reactstrap";
 
-import { IoLogoWhatsapp } from "react-icons/io";
-import { GiRotaryPhone } from "react-icons/gi";
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
+// import { IoLogoWhatsapp } from "react-icons/io";
+// import { GiRotaryPhone } from "react-icons/gi";
+// import { AiFillInstagram } from "react-icons/ai";
+// import { BsFacebook } from "react-icons/bs";
 
 export function Redes() {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,7 +32,7 @@ export function Redes() {
       <div className={styles.redes}>
         <p>Ventas por Mayor y Detal</p>
         <p>CARRERA 8 # 16 - 63 Centro</p>
-        <p>Whatsapp: 310 655 6056</p>
+        <p>Whatsapp: 312 5741767</p>
       </div>
       {/* 
       <div

@@ -78,7 +78,7 @@ export function AboutUs() {
       <div className={styles.phone}>
         <h5>Líneas de atención</h5>
         <ul>
-          <li>(+57) 310 6556056</li>
+          <li>(+57) 312 5741767</li>
           <li> naciotex.cali@gmail.com</li>
         </ul>
       </div>
