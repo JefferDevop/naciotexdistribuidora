@@ -15,7 +15,7 @@ export function ListCategories({ superCategories }) {
 
   return (
     <section className={styles.content}>
-      <h4>SUB-CATEGORÍAS</h4>
+      <h4>{superCategories.name} </h4>
       <div className={styles.list}>
         {superCategories.categories.map((category) => {
           const imageUrl = category.image
