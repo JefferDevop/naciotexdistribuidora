@@ -18,13 +18,10 @@ export class Categories {
 
 
   async getCategoryBySlug(slug) {
-
-    console.log("dslllleeeeeeeeeeeeeeeee");
-    
+   
     try {
       const slugFilter = `slug=${slug}`;
       const url = `${BASE_API}/api/supercategories/?${slugFilter}`;
-console.log("url", url);
 
       const response = await fetch(url);
       const result = await response.json();  
