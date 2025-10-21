@@ -1,80 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { Categories } from "@/api/category";
-import { Videos } from "@/api/videos";
+import { BasicLayout } from "@/layouts";
 import {
-  ListCategories,
+  ListSuperCategories,
+  ListVideos,
   Footer,
   FooterApp,
-  ListVideos,
   Redes,
 } from "@/components";
 
-import { BasicLayout } from "../../layouts";
+import { Categories } from "@/api/category";
+import { Videos } from "@/api/videos";
 
 const categoriesCtrl = new Categories();
 const videosCtrl = new Videos();
 
-
-export default function HomePage() {
-  const [categories, setCategories] = useState(null);
-  const [products, setProducts] = useState(null);
-  const [videos, setVideos] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await categoriesCtrl.getAll();
-        setCategories(response);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
+export default function SuperCategoryPage() {
+  const [data, setData] = useState({
+    superCategories: null,
+    videos: null,
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
+    // 🔹 Ejecutar ambas llamadas a la vez
+    const fetchData = async () => {
       try {
-        const response = await videosCtrl.getAll();
-        setVideos(response);
+        const [superCategoriesRes, videosRes] = await Promise.all([
+          categoriesCtrl.getAllSuperCategory(),
+          videosCtrl.getAll(),
+        ]);
+
+        setData({
+          superCategories: superCategoriesRes,
+          videos: videosRes,
+        });
       } catch (error) {
-        console.error(error);
+        console.error("Error al cargar los datos:", error);
+      } finally {
+        setLoading(false);
       }
-    })();
+    };
+
+    fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await productsCtrl.getProductByOfertAndExclusive();
-  //       setProducts(response);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   })();
-  // }, []);
+  const { superCategories, videos } = data;
 
-  if (categories !== null) {
+  if (loading) {
     return (
-      <>
-        <BasicLayout>
-       <Redes />        
-         
-          <ListCategories categories={categories} />
-          <ListVideos videos={videos} />
-          {/* <Promotion products={products} /> 
-          <Exclusive products={products} /> */}
-          <FooterApp />
-          <Footer />
-        </BasicLayout>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <BasicLayout>
-          <p>Cargando...</p>
-        </BasicLayout>
-      </>
+      <BasicLayout>
+        <p>Cargando...</p>
+      </BasicLayout>
     );
   }
+
+  return (
+    <BasicLayout>
+      <Redes />
+
+      {superCategories && (
+        <ListSuperCategories superCategories={superCategories} />
+      )}
+
+      {videos && <ListVideos videos={videos} />}
+
+      <FooterApp />
+      <Footer />
+    </BasicLayout>
+  );
 }
