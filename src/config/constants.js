@@ -1,6 +1,6 @@
 
- export const BASE_API = "https://naciotexdistribuidora.conexion.bar"
-// export const BASE_API = "http://desarrollo.localhost:8000"
+//  export const BASE_API = "https://naciotexdistribuidora.conexion.bar"
+export const BASE_API = "http://desarrollo.localhost:8000"
 
 
 

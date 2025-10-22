@@ -1,5 +1,4 @@
 
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { BASE_NAME } from "@/config/constants";
 import styles from "./ListCategories.module.scss";
@@ -7,8 +6,6 @@ import styles from "./ListCategories.module.scss";
 import { CardImg, CardTitle } from "reactstrap";
 
 export function ListSuperCategories({ superCategories }) {
-  const router = useRouter();
-
 
   const uploadPath = "image/upload/";
   const scaleOptions = "c_scale,f_auto,q_30,w_500/";
@@ -42,7 +39,7 @@ export function ListSuperCategories({ superCategories }) {
                <div className={styles.category}>
                 <CardTitle className={styles.title}>
                   <h6>{supercat.name}</h6>
-                  {!supercat.image && <h6>Ver más</h6>}
+                  { <h5>Ver más</h5>}
                 </CardTitle>
               </div>
             

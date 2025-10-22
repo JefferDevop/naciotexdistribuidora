@@ -37,7 +37,7 @@ export function ListCategories({ superCategories }) {
               <div className={styles.category}>
                 <CardTitle className={styles.title}>
                   <h6>{category.name}</h6>
-                  {!category.image && <h6>Ver más</h6>}
+                  { <h5>Ver más</h5>}
                 </CardTitle>
               </div>
             </Link>
