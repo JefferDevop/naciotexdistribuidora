@@ -11,6 +11,7 @@ export function ListSuperCategories({ superCategories }) {
   const scaleOptions = "c_scale,f_auto,q_30,w_500/";
 
 
+  
 
   // ✅ Vista general de todas las supercategorías
   return (

@@ -37,3 +37,103 @@ z-index: 1;
     }
   }
 }
+
+
+
+/* ===============================
+   CONTENEDOR GENERAL
+================================ */
+.productPanel {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+}
+
+/* ===============================
+   LOADING
+================================ */
+.productLoading {
+  font-size: 0.9rem;
+  color: #6b7280; /* gris elegante */
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ===============================
+   TARJETA DEL PRODUCTO
+================================ */
+.productCard {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.2rem 1.4rem;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.06),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+  animation: appear 0.3s ease;  
+  justify-items: center;
+  
+}
+
+/* Animación de entrada suave */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   INFO DEL PRODUCTO
+================================ */
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Nombre del producto */
+.productName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: 0.2px;
+}
+
+/* Precio destacado */
+.productPrice {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+  .productCard {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+
+  .productPrice {
+    font-size: 1.2rem;
+  }
+}
+
+
+.btnGroup {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;  
+}

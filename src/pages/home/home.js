@@ -14,6 +14,7 @@ import { Videos } from "@/api/videos";
 const categoriesCtrl = new Categories();
 const videosCtrl = new Videos();
 
+
 export default function SuperCategoryPage() {
   const [data, setData] = useState({
     superCategories: null,
@@ -45,6 +46,7 @@ export default function SuperCategoryPage() {
   }, []);
 
   const { superCategories, videos } = data;
+
 
   if (loading) {
     return (

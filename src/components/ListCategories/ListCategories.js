@@ -12,6 +12,7 @@ export function ListCategories({ superCategories }) {
   if (!superCategories?.categories?.length) {
     return <p className="text-center py-4">No hay categorías disponibles.</p>;
   }
+  
 
   return (
     <section className={styles.content}>
