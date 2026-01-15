@@ -27,23 +27,34 @@ export function useBarcodeScanner({ onDetected }) {
   useEffect(() => {
     if (!isOpen) return;
 
+
+
     const scanner = new Html5Qrcode("barcode-reader");
     scannerRef.current = scanner;
 
     const startCamera = async () => {
       try {
-        const cameras = await Html5Qrcode.getCameras();
-        if (!cameras?.length) return;
 
-        await scanner.start(
-          cameras[0].id,
-          { fps: 10, qrbox: { width: 250, height: 250 } },
-          async decodedText => {
-            await stop();
-            onDetected(decodedText);
-          },
-          () => {}
-        );
+
+
+       const cameras = await Html5Qrcode.getCameras();
+if (!cameras?.length) return;
+
+const backCamera =
+  cameras.find(cam => /back|rear|environment/i.test(cam.label)) ||
+  cameras[cameras.length - 1];
+
+await scanner.start(
+  backCamera.id,
+  { fps: 10, qrbox: { width: 300, height: 300 } },
+  async decodedText => {
+    await stop();
+    onDetected(decodedText);
+  },
+  () => {}
+);
+
+
       } catch (err) {
         await stop();
       }

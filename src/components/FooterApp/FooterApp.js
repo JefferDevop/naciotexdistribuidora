@@ -87,7 +87,7 @@ export function FooterApp() {
           color="succefull"
           onClick={() => toggleModal()}
         >
-          <BsQrCode size={30} color="green" />
+          <BsQrCode size={22} color="green" />
         </Button>
 
 
