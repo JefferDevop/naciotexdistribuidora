@@ -41,6 +41,15 @@ export function FooterApp() {
     setProduct(null);
   };
 
+  toast.configure({
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
 
   // const addData = () => {
@@ -63,7 +72,7 @@ export function FooterApp() {
         setProduct(data);
       } catch {
 
-        toast("Producto no encontrado");
+        toast("Producto no encontrado, intente nuevamente");
       } finally {
         setLoading(false);
       }
