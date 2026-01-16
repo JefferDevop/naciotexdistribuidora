@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useCart } from "@/hooks/useCart";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
-import { BASE_API } from "@/config/constants";
+import { toast } from "react-toastify";
 
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { CiUser } from "react-icons/ci";
-import { BsWhatsapp } from "react-icons/bs";
 import { BsQrCode } from "react-icons/bs";
 
 
@@ -39,7 +38,10 @@ export function FooterApp() {
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
+    setProduct(null);
   };
+
+
 
   // const addData = () => {
   //   const whatsappLink = generateWhatsAppLink(
@@ -60,7 +62,8 @@ export function FooterApp() {
         const data = await fetchProductByBarcode(code);
         setProduct(data);
       } catch {
-        alert("Producto no encontrado");
+
+        toast("Producto no encontrado");
       } finally {
         setLoading(false);
       }
