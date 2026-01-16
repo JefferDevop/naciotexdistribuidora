@@ -41,16 +41,16 @@ export function FooterApp() {
     setIsOpen(!isOpen);
   };
 
-  const addData = () => {
-    const whatsappLink = generateWhatsAppLink(
-      selectedItem,
-      "Hola, me gustaría obtener más información sobre sus productos."
-    );
+  // const addData = () => {
+  //   const whatsappLink = generateWhatsAppLink(
+  //     selectedItem,
+  //     "Hola, me gustaría obtener más información sobre sus productos."
+  //   );
 
-    window.location.href = whatsappLink;
+  //   window.location.href = whatsappLink;
 
-    toggleModal();
-  };
+  //   toggleModal();
+  // };
 
 
   const scanner = useBarcodeScanner({
