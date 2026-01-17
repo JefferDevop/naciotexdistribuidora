@@ -4,7 +4,7 @@ import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { toast } from "react-toastify";
 
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsWhatsapp } from "react-icons/bs";
 import { CiUser } from "react-icons/ci";
 import { BsQrCode } from "react-icons/bs";
 
@@ -35,33 +35,29 @@ export function FooterApp() {
     useWhatsApp();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
     setProduct(null);
   };
 
-  toast.configure({
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  const toggleModal2 = () => {
+    setIsOpen2(!isOpen2);
+    setProduct(null);
+  };
 
 
-  // const addData = () => {
-  //   const whatsappLink = generateWhatsAppLink(
-  //     selectedItem,
-  //     "Hola, me gustaría obtener más información sobre sus productos."
-  //   );
+  const addData = () => {
+    const whatsappLink = generateWhatsAppLink(
+      selectedItem,
+      "Hola, me gustaría obtener más información sobre sus productos."
+    );
 
-  //   window.location.href = whatsappLink;
+    window.location.href = whatsappLink;
 
-  //   toggleModal();
-  // };
+    toggleModal2();
+  };
 
 
   const scanner = useBarcodeScanner({
@@ -85,26 +81,45 @@ export function FooterApp() {
     <div className={styles.btnWhatsapp}>
       <div className={styles.paneluser}>
         <BtnLink link={"/"} title={"HOME"} logo={<AiOutlineHome size={20} />} />
-        <BtnLink
+
+
+        {/* <BtnLink
           link={"/featured"}
           title={"EXCL"}
           logo={<BsSearch size={20} />}
+        /> */}
+
+
+        <BtnLink
+          title={"QR"}
+          logo={<BsQrCode size={20} />}
+          onClick={() => toggleModal()}
         />
 
+
+
+
+
+
+        {/* <Button
+          className={styles.whatsapp}
+          color="succefull"
+          onClick={() => toggleModal()}
+        >
+          <BsQrCode size={20} color="green" />
+        </Button> */}
 
 
 
         <Button
           className={styles.whatsapp}
           color="succefull"
-          onClick={() => toggleModal()}
+          onClick={() => toggleModal2()}
         >
-          <BsQrCode size={22} color="green" />
+          <BsWhatsapp size={20} color="green" />
         </Button>
 
 
-
-        
 
 
 
@@ -165,6 +180,48 @@ export function FooterApp() {
 
         </ModalFooter>
       </Modal>
+
+
+
+
+      <Modal centered isOpen={isOpen2} toggle={toggleModal2}>
+
+
+        <ModalBody>
+          <FormGroup>
+            {items.map((item, index) => (
+              <Button
+                key={index}
+                color="success"
+                outline
+                size="sm"
+                className={index === selectedItem ? "selected" : ""}
+                onClick={() => handleItemClick(item)}
+              >
+                <BsWhatsapp size={20} /> Linea {index + 1}
+                <p>{seller[index]}</p>
+              </Button>
+            ))}
+          </FormGroup>
+        </ModalBody>
+
+        <ModalFooter>
+
+
+          <Button outline size="sm" color="secondary" onClick={toggleModal2}>
+            Cancelar
+          </Button>
+          <Button size="sm" color="success" onClick={addData}>
+            Aceptar
+          </Button>
+
+
+        </ModalFooter>
+      </Modal>
+
+
+
+
     </div>
   );
 }

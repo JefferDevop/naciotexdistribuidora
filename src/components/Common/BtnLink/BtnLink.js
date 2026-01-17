@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "./BtnLink.module.scss";
 
 export function BtnLink(props) {
-  const { link, title, logo } = props;
+  const { link, onClick, title, logo } = props;
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -18,7 +18,7 @@ export function BtnLink(props) {
     <>
       <div className={styles.btnlink}>
         <Button
-          onClick={handleClick}
+          onClick={onClick || handleClick}
           onFocus={updateState}
           onBlur={updateState}
           onChange={updateState}
